@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class HomeController {
     @GetMapping("/")
@@ -35,12 +38,22 @@ public class HomeController {
     }
 
     @GetMapping("/join")
-    public String showJoinForm(){
+    public String showJoinForm(Model model){
+        List<String> cohortNames = new ArrayList<>();
+        cohortNames.add("COBOL");
+        cohortNames.add("Draco");
+
+        model.addAttribute("cohortNames", cohortNames);
         return "/join";
     }
 
     @PostMapping("/join")
     public String postJoinForm(@RequestParam(name = "cohort") String cohort, Model model){
+        List<String> cohortNames = new ArrayList<>();
+        cohortNames.add("COBOL");
+        cohortNames.add("Draco");
+
+
         model.addAttribute("cohort", "Welcome to " + cohort + "!");
         return "/join";
     }
