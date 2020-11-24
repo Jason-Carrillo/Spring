@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,6 +58,27 @@ public class HomeController {
         model.addAttribute("cohort", "Welcome to " + cohort + "!");
         return "/join";
     }
+
+    @GetMapping("/roll-dice")
+    public String showRoll(Model model){
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
+        numbers.add(6);
+
+        model.addAttribute("numbers", numbers);
+        return "/roll-dice";
+    }
+
+    @GetMapping("/roll-dice/{number}")
+    public String pickNumber(@PathVariable String number, Model model){
+        model.addAttribute("number", number);
+        return "/roll-dice";
+    }
+
 
 
 }

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Roll Dice</title>
+</head>
+<body>
+
+    <h1><span th:text="${number}"></span></h1>
+    <button action="/roll-dice" method="post" th:each="number : ${numbers}" name="number" ><span th:text="${number}"></span>
+    </button>
+
+</body>
+</html>
