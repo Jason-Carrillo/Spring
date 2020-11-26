@@ -74,8 +74,9 @@ public class HomeController {
         return "/roll-dice";
     }
 
-    @GetMapping("/roll-dice/${number}")
-    public String numberPicker(@RequestParam String number, Model model){
+    @GetMapping("/roll-dice/{number}")
+    public String numberPicker(@PathVariable String number, Model model){
+
         model.addAttribute("number", number);
         return "/roll-dice";
     }
