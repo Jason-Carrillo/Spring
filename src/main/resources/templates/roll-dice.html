@@ -7,7 +7,7 @@
 <body>
 
     <h1><span th:text="${number}"></span></h1>
-    <button action="/roll-dice" method="post" th:each="number : ${numbers}" name="number" ><span th:text="${number}"></span>
+    <button action="'/roll-dice'" method="post" th:each="numberEach : ${numbers}" name="number" ><span th:text="${numberEach}"></span>
     </button>
 
 </body>

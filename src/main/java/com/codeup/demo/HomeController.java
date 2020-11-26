@@ -56,6 +56,7 @@ public class HomeController {
 
 
         model.addAttribute("cohort", "Welcome to " + cohort + "!");
+        model.addAttribute("cohortNames", cohortNames);
         return "/join";
     }
 
@@ -73,8 +74,8 @@ public class HomeController {
         return "/roll-dice";
     }
 
-    @GetMapping("/roll-dice/{number}")
-    public String pickNumber(@PathVariable String number, Model model){
+    @GetMapping("/roll-dice/${number}")
+    public String numberPicker(@RequestParam String number, Model model){
         model.addAttribute("number", number);
         return "/roll-dice";
     }
