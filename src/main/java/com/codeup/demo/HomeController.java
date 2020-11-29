@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class HomeController {
@@ -75,7 +76,13 @@ public class HomeController {
     }
 
     @GetMapping("/roll-dice/{number}")
-    public String numberPicker(@PathVariable String number, Model model){
+    public String numberPicker(@PathVariable(name = "number") int number, Model model){
+        model.addAttribute("number", number);
+        Random random = new Random();
+        if (number == random.nextInt(6)+1){
+            model.addAttribute("Correct", "Correct");
+        }
+
 
         model.addAttribute("number", number);
         return "/roll-dice";
