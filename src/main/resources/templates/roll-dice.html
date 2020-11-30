@@ -10,7 +10,7 @@
 <!--    <a th:each="numberEach : ${numbers}" th:name="${number}" href="${number}" method="post"  name="${number}"  ><span th:text="${numberEach}"></span>-->
 <!--    </a>-->
 
-    <div class="alert alert-danger" th:if="${Correct}">
+    <div th:if="${Correct}">
         Correct
     </div>
 <br>
