@@ -1,24 +1,38 @@
 package com.codeup.demo;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 @Controller
 public class PostController {
 
     @GetMapping("/posts")
-    @ResponseBody
-    public String sayHello() {
-        return "posts index page";
+    public String index(Model model) {
+        List<Post> posts = new ArrayList<>(Arrays.asList(
+                new Post("test1", "body1"),
+                new Post("test2", "body2")
+        ));
+
+        model.addAttribute("posts", posts);
+        return "/posts/index";
     }
 
     @GetMapping("/posts/{id}")
-    @ResponseBody
-    public int viewPost(@PathVariable int id) {
-        return id;
+    public String viewPost(@PathVariable int id, Model model) {
+
+        Post post = new Post("title individual", "body individual");
+        model.addAttribute("post", post);
+
+        return "posts/show";
     }
 
     @GetMapping("/posts/create")
@@ -33,7 +47,7 @@ public class PostController {
         return "create a new post";
     }
 
-    @GetMapping("/posts/index")
+    @GetMapping("")
     @ResponseBody
     public String allPosts() {
         return "all posts";

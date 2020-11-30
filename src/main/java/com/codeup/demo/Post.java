@@ -1,3 +1,5 @@
+package com.codeup.demo;
+
 public class Post {
     private String title;
     private String body;
