@@ -33,4 +33,16 @@ public class PostController {
         return "create a new post";
     }
 
+    @GetMapping("/posts/index")
+    @ResponseBody
+    public String allPosts() {
+        return "all posts";
+    }
+
+    @GetMapping("/posts/show")
+    @ResponseBody
+    public String singlePosts() {
+        return "single posts";
+    }
+
 }
