@@ -7,14 +7,14 @@
 <body>
 
     <h1><span th:text="${number}"></span></h1>
-    <a th:each="numberEach : ${numbers}" th:name="${number}" href="${number}" method="post"  name="${number}"  ><span th:text="${numberEach}"></span>
-    </a>
+<!--    <a th:each="numberEach : ${numbers}" th:name="${number}" href="${number}" method="post"  name="${number}"  ><span th:text="${numberEach}"></span>-->
+<!--    </a>-->
 
     <div class="alert alert-danger" th:if="${Correct}">
         Correct
     </div>
 <br>
-    <p>Hard input redirect</p>
+<!--    <p>Hard input redirect</p>-->
     <a href="/roll-dice/1">1</a>
     <a href="/roll-dice/2">2</a>
     <a href="/roll-dice/3">3</a>
