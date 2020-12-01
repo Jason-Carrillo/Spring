@@ -1,3 +1,5 @@
+package com.codeup.demo.repos;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,8 +17,13 @@ public class Ad {
 
     public Ad(){}
 
+//    CREATE
+    public Ad(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 
-
+//    READ
     public Ad(long id, String title, String description){
         this.id = id;
         this.title = title;

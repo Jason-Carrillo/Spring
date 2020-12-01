@@ -1,12 +1,11 @@
-package com.codeup.demo;
+package com.codeup.demo.Controllers;
 
+import com.codeup.demo.Post;
+import com.codeup.demo.repos.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.*;
+import com.codeup.demo.repos.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,6 +13,12 @@ import java.util.List;
 
 @Controller
 public class PostController {
+
+    private final PostRepository postDao;
+
+    public PostController(PostRepository postDao) {
+        this.postDao = postDao;
+    }
 
     @GetMapping("/posts")
     public String index(Model model) {
@@ -45,6 +50,17 @@ public class PostController {
     @ResponseBody
     public String create() {
         return "create a new post";
+    }
+
+    @PostMapping("/posts/edit")
+    @ResponseBody
+    public String createPost(
+            @RequestParam(name = "title") String title,
+            @RequestParam(name = "description") String desc
+    ){
+        Post post = new Post(title, desc);
+        Post dbPost = postDao.save(post);
+        return "edited ad with the id: " + dbPost.getId();
     }
 
     @GetMapping("")
