@@ -5,7 +5,7 @@ import com.codeup.demo.repos.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.codeup.demo.repos.*;
+import com.codeup.demo.repos.PostRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,10 +32,9 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String viewPost(@PathVariable int id, Model model) {
+    public String viewPost(@PathVariable long id, Model model) {
 
-        Post post = new Post("title single" + id, "body single");
-        model.addAttribute("post", post);
+        model.addAttribute("post", postDao.getOne(id));
 
         return "posts/show";
     }
@@ -52,8 +51,9 @@ public class PostController {
         return "create a new post";
     }
 
-    @GetMapping("posts/edit")
-    public String showEditForm(){
+    @GetMapping("posts/{id}/edit")
+    public String showEditForm(@PathVariable long id, Model viewModel){
+        viewModel.addAttribute("post", postDao.getOne(id));
         return "posts/edit";
     }
 
@@ -65,7 +65,27 @@ public class PostController {
     ){
         Post post = new Post(title, desc);
         Post dbPost = postDao.save(post);
-        return "edited post with the id: " + dbPost.getId();
+        return "redirect:/post/ " + dbPost.getId();
+    }
+
+    @PostMapping("/posts/edit")
+    @ResponseBody
+    public String createPost(
+            @PathVariable long id,
+            @RequestParam(name = "title") String title,
+            @RequestParam(name = "description") String desc
+    ){
+        Post post = postDao.getOne(id);
+        post.setTitle(title);
+        post.setBody(desc);
+        postDao.save(post);
+        return "redirect:/post/ " + post.getId();
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id){
+        postDao.deleteById(id);
+        return "redirect:/posts";
     }
 
     @GetMapping("")
