@@ -1,7 +1,6 @@
-package com.codeup.demo;
+package com.codeup.demo.models;
 
 import javax.persistence.*;
-import com.codeup.demo.repos.PostRepository;
 
 @Entity
 @Table(name="posts")
@@ -17,7 +16,7 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
-    public Post(Long id, String title, String body) {
+    public Post(long id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;

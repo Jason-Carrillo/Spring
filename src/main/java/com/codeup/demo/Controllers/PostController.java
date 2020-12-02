@@ -1,11 +1,10 @@
 package com.codeup.demo.Controllers;
 
-import com.codeup.demo.Post;
+import com.codeup.demo.models.Post;
 import com.codeup.demo.repos.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import com.codeup.demo.repos.PostRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,19 +67,19 @@ public class PostController {
         return "redirect:/post/ " + dbPost.getId();
     }
 
-    @PostMapping("/posts/edit")
-    @ResponseBody
-    public String createPost(
-            @PathVariable long id,
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "description") String desc
-    ){
-        Post post = postDao.getOne(id);
-        post.setTitle(title);
-        post.setBody(desc);
-        postDao.save(post);
-        return "redirect:/post/ " + post.getId();
-    }
+//    @PostMapping("/posts/edit")
+//    @ResponseBody
+//    public String createPost(
+//            @PathVariable long id,
+//            @RequestParam(name = "title") String title,
+//            @RequestParam(name = "description") String desc
+//    ){
+//        Post post = postDao.getOne(id);
+//        post.setTitle(title);
+//        post.setBody(desc);
+//        postDao.save(post);
+//        return "redirect:/post/ " + post.getId();
+//    }
 
     @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id){
