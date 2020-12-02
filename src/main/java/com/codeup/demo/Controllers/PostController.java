@@ -52,6 +52,11 @@ public class PostController {
         return "create a new post";
     }
 
+    @GetMapping("posts/edit")
+    public String showEditForm(){
+        return "posts/edit";
+    }
+
     @PostMapping("/posts/edit")
     @ResponseBody
     public String createPost(
@@ -60,7 +65,7 @@ public class PostController {
     ){
         Post post = new Post(title, desc);
         Post dbPost = postDao.save(post);
-        return "edited ad with the id: " + dbPost.getId();
+        return "edited post with the id: " + dbPost.getId();
     }
 
     @GetMapping("")
