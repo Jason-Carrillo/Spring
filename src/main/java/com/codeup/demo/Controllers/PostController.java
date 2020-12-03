@@ -53,17 +53,6 @@ public class PostController {
         return "posts/edit";
     }
 
-//    @PostMapping("/posts/edit")
-//    @ResponseBody
-//    public String createPost(
-//            @RequestParam(name = "title") String title,
-//            @RequestParam(name = "description") String desc
-//    ){
-//        Post post = new Post(title, desc);
-//        Post dbPost = postDao.save(post);
-//        return "redirect:/post/ " + dbPost.getId();
-//    }
-
     @PostMapping("/posts/edit")
     @ResponseBody
     public String createPost(
