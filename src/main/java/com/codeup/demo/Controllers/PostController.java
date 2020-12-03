@@ -38,6 +38,7 @@ public class PostController {
         return "posts/show";
     }
 
+
     @GetMapping("/posts/create")
     @ResponseBody
     public String viewCreate() {
@@ -67,19 +68,19 @@ public class PostController {
         return "redirect:/post/ " + dbPost.getId();
     }
 
-//    @PostMapping("/posts/edit")
-//    @ResponseBody
-//    public String createPost(
-//            @PathVariable long id,
-//            @RequestParam(name = "title") String title,
-//            @RequestParam(name = "description") String desc
-//    ){
-//        Post post = postDao.getOne(id);
-//        post.setTitle(title);
-//        post.setBody(desc);
-//        postDao.save(post);
-//        return "redirect:/post/ " + post.getId();
-//    }
+    @PostMapping("/posts/edit")
+    @ResponseBody
+    public String createPost(
+            @PathVariable long id,
+            @RequestParam(name = "title") String title,
+            @RequestParam(name = "description") String desc
+    ){
+        Post post = postDao.getOne(id);
+        post.setTitle(title);
+        post.setBody(desc);
+        postDao.save(post);
+        return "redirect:/post/ " + post.getId();
+    }
 
     @PostMapping("/posts/{id}/delete")
     public String deletePost(@PathVariable long id){

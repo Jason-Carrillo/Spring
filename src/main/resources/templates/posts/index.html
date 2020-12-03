@@ -9,4 +9,8 @@
 <div th:each="post : ${posts}">
     <h3 th:text="${post.title}"></h3>
     <p th:text="${post.body}"></p>
+    <form th:action="@{/posts/{id}(id=${post.id})}" method="post">
+        <button type="submit">see post</button>
+    </form>
+</div>
 </html>
