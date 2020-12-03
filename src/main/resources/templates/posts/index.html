@@ -12,9 +12,6 @@
         <a th:href="@{/posts/{id}(id=${post.id})}">
             View Post
         </a>
-        <a th:href="@{/posts/{id}(id=${post.id})}">
-            View Post
-        </a>
         <form th:action="@{'/posts/' + ${post.id} + '/delete'}" th:method="post">
             <button class="btn btn-primary">Delete</button>
         </form>
