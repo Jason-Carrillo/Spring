@@ -9,7 +9,7 @@
 <div th:each="post : ${posts}">
     <h3 th:text="${post.title}"></h3>
     <p th:text="${post.body}"></p>
-    <form th:action="@{/posts/{id}(id=${post.id})}" method="post">
+    <form th:action="@{/posts/${post.id}}" method="GET">
         <button type="submit">see post</button>
     </form>
 </div>

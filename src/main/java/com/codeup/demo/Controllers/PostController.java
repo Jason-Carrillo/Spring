@@ -20,16 +20,11 @@ public class PostController {
         this.postDao = postDao;
     }
 
-//    @GetMapping("/posts")
-//    public String index(Model model) {
-//        List<Post> posts = new ArrayList<>(Arrays.asList(
-//                new Post("test1", "body1"),
-//                new Post("test2", "body2")
-//        ));
-//
-//        model.addAttribute("posts", posts);
-//        return "/posts/index";
-//    }
+    @GetMapping("/posts")
+    public String index(Model model){
+        model.addAttribute("posts",postDao.findAll());
+        return "posts/index";
+    }
 
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable long id, Model model) {
