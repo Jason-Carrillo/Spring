@@ -58,10 +58,9 @@ public class PostController {
         return "posts/edit";
     }
 
-    @PostMapping("/posts/edit")
-    @ResponseBody
-    public String createPost(
-            @PathVariable long id,
+    @PostMapping("/posts/{id}/edit")
+    public String editPost(
+            @PathVariable(name = "id") long id,
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String desc
     ){
@@ -69,19 +68,13 @@ public class PostController {
         post.setTitle(title);
         post.setBody(desc);
         postDao.save(post);
-        return "redirect:/post/ " + post.getId();
+        return "redirect:/posts/";
     }
 
     @PostMapping("/posts/{id}/delete")
-    public String deletePost(@PathVariable long id){
+    public String deletePost(@PathVariable long id) {
         postDao.deleteById(id);
         return "redirect:/posts";
-    }
-
-    @GetMapping("")
-    @ResponseBody
-    public String allPosts() {
-        return "all posts";
     }
 
     @GetMapping("/posts/show")

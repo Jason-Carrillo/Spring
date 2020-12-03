@@ -7,15 +7,13 @@
 <body>
 <main>
     <form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="post">
-        Title
+        Title:
         <input name="title" id="name-ipt" th:value="${post.title}">
         Description:
-
-
+        <input name="description" id="desc-ipt" th:value="${post.body}">
+        <button>Submit</button>
     </form>
-    <form th:action="@{/posts/{id}/delete(id=${post.id})}">
-        <button>Delete</button>
-    </form>
+
 </main>
 
 </body>
