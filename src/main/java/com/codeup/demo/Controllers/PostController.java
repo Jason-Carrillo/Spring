@@ -1,15 +1,13 @@
 package com.codeup.demo.Controllers;
 
 import com.codeup.demo.models.Post;
+import com.codeup.demo.models.User;
 import com.codeup.demo.repos.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.codeup.demo.repos.UserRepository;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -17,8 +15,11 @@ public class PostController {
 
     private final PostRepository postDao;
 
-    public PostController(PostRepository postDao) {
+    private final UserRepository userDao;
+
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -28,7 +29,7 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String viewPost(@PathVariable long id, Model model) {
+    public String viewPost(@PathVariable(name= "id") long id,  Model model ) {
 
         model.addAttribute("post", postDao.getOne(id));
 
@@ -36,18 +37,20 @@ public class PostController {
     }
 
 
+
     @GetMapping("/posts/create")
     public String viewCreate() {
         return "posts/new";
     }
 
-//    @PostMapping("/posts/create")
-//    @ResponseBody
-//    public String create(@RequestParam Map<String, String> reqParam) {
-//        Post post = new Post(reqParam.get("title"), reqParam.get("description") );
-//        postDao.save(post);
-//        return "redirect:/posts/"+post.getId();
-//    }
+    @PostMapping("/posts/create")
+    public String create(@RequestParam (name = "title") String title, @RequestParam (name = "description") String description) {
+        User user = userDao.getOne(1L);
+        Post post = new Post(title, description, user);
+        postDao.save(post);
+        return "redirect:/posts/"+ post.getId();
+    }
+
 
     @GetMapping("posts/{id}/edit")
     public String showEditForm(@PathVariable long id, Model viewModel){

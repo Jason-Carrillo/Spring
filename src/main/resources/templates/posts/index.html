@@ -5,12 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<h1>All</h1>
-<div th:each="post : ${posts}">
-    <h3 th:text="${post.title}"></h3>
-    <p th:text="${post.body}"></p>
-    <form th:action="@{/posts/${post.id}}" method="GET">
-        <button type="submit">see post</button>
-    </form>
-</div>
+    <h1>All</h1>
+    <div th:each="post : ${posts}">
+        <h3 th:text="${post.title}"></h3>
+        <p th:text="${post.body}"></p>
+        <a th:href="@{/posts/{id}(id=${post.id})}">
+            View Post
+        </a>
+    </div>
+</body>
 </html>
