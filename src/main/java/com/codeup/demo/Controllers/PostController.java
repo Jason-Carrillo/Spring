@@ -10,6 +10,7 @@ import com.codeup.demo.repos.UserRepository;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class PostController {
@@ -36,16 +37,17 @@ public class PostController {
 
 
     @GetMapping("/posts/create")
-    @ResponseBody
     public String viewCreate() {
-        return "view the form for creating a post";
+        return "posts/new";
     }
 
-    @PostMapping("/posts/create")
-    @ResponseBody
-    public String create() {
-        return "create a new post";
-    }
+//    @PostMapping("/posts/create")
+//    @ResponseBody
+//    public String create(@RequestParam Map<String, String> reqParam) {
+//        Post post = new Post(reqParam.get("title"), reqParam.get("description") );
+//        postDao.save(post);
+//        return "redirect:/posts/"+post.getId();
+//    }
 
     @GetMapping("posts/{id}/edit")
     public String showEditForm(@PathVariable long id, Model viewModel){

@@ -36,6 +36,10 @@ public class Post {
         this.owner = owner;
     }
 
+    public Post(String title, String description) {
+        this.title = title;
+        this.body = description;
+    }
 
 
     public String getTitle() {
