@@ -5,6 +5,7 @@ import com.codeup.demo.repos.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import com.codeup.demo.repos.UserRepository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,16 +20,16 @@ public class PostController {
         this.postDao = postDao;
     }
 
-    @GetMapping("/posts")
-    public String index(Model model) {
-        List<Post> posts = new ArrayList<>(Arrays.asList(
-                new Post("test1", "body1"),
-                new Post("test2", "body2")
-        ));
-
-        model.addAttribute("posts", posts);
-        return "/posts/index";
-    }
+//    @GetMapping("/posts")
+//    public String index(Model model) {
+//        List<Post> posts = new ArrayList<>(Arrays.asList(
+//                new Post("test1", "body1"),
+//                new Post("test2", "body2")
+//        ));
+//
+//        model.addAttribute("posts", posts);
+//        return "/posts/index";
+//    }
 
     @GetMapping("/posts/{id}")
     public String viewPost(@PathVariable long id, Model model) {
@@ -57,16 +58,16 @@ public class PostController {
         return "posts/edit";
     }
 
-    @PostMapping("/posts/edit")
-    @ResponseBody
-    public String createPost(
-            @RequestParam(name = "title") String title,
-            @RequestParam(name = "description") String desc
-    ){
-        Post post = new Post(title, desc);
-        Post dbPost = postDao.save(post);
-        return "redirect:/post/ " + dbPost.getId();
-    }
+//    @PostMapping("/posts/edit")
+//    @ResponseBody
+//    public String createPost(
+//            @RequestParam(name = "title") String title,
+//            @RequestParam(name = "description") String desc
+//    ){
+//        Post post = new Post(title, desc);
+//        Post dbPost = postDao.save(post);
+//        return "redirect:/post/ " + dbPost.getId();
+//    }
 
     @PostMapping("/posts/edit")
     @ResponseBody
