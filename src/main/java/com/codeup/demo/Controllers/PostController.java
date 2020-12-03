@@ -68,7 +68,7 @@ public class PostController {
         post.setTitle(title);
         post.setBody(desc);
         postDao.save(post);
-        return "redirect:/posts/";
+        return "redirect:/posts/{id}";
     }
 
     @PostMapping("/posts/{id}/delete")
