@@ -1,5 +1,6 @@
 package com.codeup.demo.Controllers;
 
+import Services.EmailService;
 import com.codeup.demo.models.Post;
 import com.codeup.demo.models.User;
 import com.codeup.demo.repos.PostRepository;
@@ -17,9 +18,12 @@ public class PostController {
 
     private final UserRepository userDao;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    private final EmailService emailService;
+
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -48,7 +52,8 @@ public class PostController {
     public String create(@ModelAttribute Post postToSave) {
         User user = userDao.getOne(1L);
         postToSave.setOwner(user);
-        postDao.save(postToSave);
+        Post postDB = postDao.save(postToSave);
+        emailService.prepareAndSend(postDB, "post created", "this is the body");
         return "redirect:/posts/";
     }
 
