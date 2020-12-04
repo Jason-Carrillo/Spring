@@ -1,4 +1,4 @@
-package Services;
+package com.codeup.demo.Services;
 
 import com.codeup.demo.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;

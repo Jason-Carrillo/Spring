@@ -1,6 +1,6 @@
 package com.codeup.demo.Controllers;
 
-import Services.EmailService;
+import com.codeup.demo.Services.EmailService;
 import com.codeup.demo.models.Post;
 import com.codeup.demo.models.User;
 import com.codeup.demo.repos.PostRepository;
@@ -8,8 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.codeup.demo.repos.UserRepository;
-
-import java.util.Map;
 
 @Controller
 public class PostController {
