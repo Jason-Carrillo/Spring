@@ -6,13 +6,14 @@
 </head>
 <body>
 <main>
-    <form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="post">
+    <form th:action="@{/posts/{id}/edit(id=${post.id})}" th:method="post" th:object="${post}">
         Title:
-        <input name="title" id="name-ipt" th:value="${post.title}">
+        <input th:field="*{title}" th:value="${title}">
         Description:
-        <input name="description" id="desc-ipt" th:value="${post.body}">
+        <input th:field="*{body}" th:value="${body}">
         <button>Submit</button>
     </form>
+
 
 </main>
 
