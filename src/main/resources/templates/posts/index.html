@@ -8,19 +8,21 @@
 </head>
 <body>
 <nav th:replace="/partials/header :: navbar"></nav>
-    <h1>All</h1>
-    <div th:each="post : ${posts}">
-        <h3 th:text="${post.title}"></h3>
-        <p th:text="${post.body}"></p>
-        <a th:href="@{/posts/{id}(id=${post.id})}">
-            View Post
-        </a>
-        <form th:action="@{'/posts/' + ${post.id} + '/delete'}" th:method="post">
-            <button class="btn btn-primary">Delete</button>
-        </form>
-        <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="get">
-            <button class="btn btn-primary">Edit</button>
-        </form>
+        <h1>All</h1>
+    <div class="row justify-space-around col-12">
+        <div class="col-3" th:each="post : ${posts}">
+            <h3 th:text="${post.title}"></h3>
+            <p th:text="${post.body}"></p>
+            <a th:href="@{/posts/{id}(id=${post.id})}">
+                View Post
+            </a>
+            <form th:action="@{'/posts/' + ${post.id} + '/delete'}" th:method="post">
+                <button class="btn btn-primary">Delete</button>
+            </form>
+            <form th:action="@{'/posts/' + ${post.id} + '/edit'}" th:method="get">
+                <button class="btn btn-primary">Edit</button>
+            </form>
+        </div>
     </div>
 </body>
 
