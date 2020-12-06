@@ -8,7 +8,7 @@
 </head>
 <body>
 <nav th:replace="/partials/header :: navbar"></nav>
-        <h1 class="text-center">All</h1>
+        <h1 class="text-center">All Posts</h1>
     <div class="row justify-space-around col-12">
         <div class="col-3" th:each="post : ${posts}">
             <h3 th:text="${post.title}"></h3>
