@@ -4,6 +4,7 @@ import com.codeup.demo.Services.EmailService;
 import com.codeup.demo.models.Post;
 import com.codeup.demo.models.User;
 import com.codeup.demo.repos.PostRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -64,7 +65,7 @@ public class PostController {
 
     @PostMapping("/posts/{id}/edit")
     public String editPost(@ModelAttribute Post postToEdit){
-        User user = userDao.getOne(1L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postToEdit.setOwner(user);
         postDao.save(postToEdit);
         return "redirect:/posts/{id}";

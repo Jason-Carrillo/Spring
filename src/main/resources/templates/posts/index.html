@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,6 +9,7 @@
 </head>
 <body>
 <nav th:replace="/partials/header :: navbar"></nav>
+
         <h1 class="text-center">All Posts</h1>
     <div class="row justify-space-around col-12">
         <div class="col-3" th:each="post : ${posts}">
