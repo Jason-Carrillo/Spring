@@ -49,7 +49,7 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String create(@ModelAttribute Post postToSave) {
-        User user = userDao.getOne(1L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         postToSave.setOwner(user);
         Post postDB = postDao.save(postToSave);
         emailService.prepareAndSend(postDB, "post created", "this is the body");
