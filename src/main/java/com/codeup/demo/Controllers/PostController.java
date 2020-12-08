@@ -25,6 +25,11 @@ public class PostController {
         this.emailService = emailService;
     }
 
+    @GetMapping("/home")
+    public String welcome() {
+        return "home";
+    }
+
     @GetMapping("/posts")
     public String index(Model model){
         model.addAttribute("posts",postDao.findAll());
